@@ -82,9 +82,86 @@
             min-height: 500px;
         }
 
+        /* ---------- NAME SELECTION ---------- */
+        #nameSelection {
+            display: block;
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        #nameSelection .welcome-icon {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        #nameSelection h2 {
+            color: #ffffff;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        #nameSelection p {
+            color: #94a3b8;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .name-options {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .name-options button {
+            background: rgba(255, 255, 255, 0.06);
+            border: 2px solid rgba(255, 255, 255, 0.08);
+            border-radius: 1.2rem;
+            padding: 1.5rem 2.5rem;
+            color: #e2e8f0;
+            font-family: "Inter", sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+            min-width: 160px;
+        }
+
+        .name-options button .name-emoji {
+            font-size: 2.5rem;
+        }
+
+        .name-options button .name-label {
+            font-size: 0.7rem;
+            color: #64748b;
+            font-weight: 400;
+        }
+
+        .name-options button:hover {
+            background: rgba(59, 130, 246, 0.15);
+            border-color: #3b82f6;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px -12px rgba(59, 130, 246, 0.3);
+        }
+
+        .name-options button.palesa:hover {
+            border-color: #ec4899;
+            box-shadow: 0 12px 32px -12px rgba(236, 72, 153, 0.3);
+        }
+
+        .name-options button.kekeletso:hover {
+            border-color: #06b6d4;
+            box-shadow: 0 12px 32px -12px rgba(6, 182, 212, 0.3);
+        }
+
         /* ---------- QUIZ SECTION ---------- */
         #quizSection {
-            display: block;
+            display: none;
         }
 
         .quiz-header {
@@ -110,6 +187,18 @@
             margin-top: 0.2rem;
         }
 
+        .quiz-header .selected-name-badge {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.15);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            color: #60a5fa;
+            padding: 0.2rem 1.2rem;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
         /* ---------- TIMER BAR ---------- */
         .timer-container {
             background: rgba(255, 255, 255, 0.05);
@@ -128,10 +217,7 @@
             transition: width 0.3s linear;
         }
 
-        .timer-bar.warning {
-            background: #fbbf24;
-        }
-
+        .timer-bar.warning { background: #fbbf24; }
         .timer-bar.danger {
             background: #ef4444;
             animation: pulse-timer 0.5s ease-in-out infinite;
@@ -149,10 +235,7 @@
             margin-top: 0.2rem;
             font-weight: 500;
         }
-
-        .timer-text span {
-            color: #e2e8f0;
-        }
+        .timer-text span { color: #e2e8f0; }
 
         /* ---------- QUESTION ---------- */
         .question-container {
@@ -341,16 +424,12 @@
             align-items: center;
             gap: 0.6rem;
         }
-
-        .leaderboard-section .lb-title i {
-            color: #fbbf24;
-        }
+        .leaderboard-section .lb-title i { color: #fbbf24; }
 
         .lb-table {
             width: 100%;
             border-collapse: collapse;
         }
-
         .lb-table th {
             text-align: left;
             color: #64748b;
@@ -361,41 +440,69 @@
             padding: 0.3rem 0.5rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-
         .lb-table td {
             padding: 0.5rem 0.5rem;
             color: #e2e8f0;
             font-size: 0.9rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.03);
         }
-
         .lb-table .rank-1 { color: #fbbf24; font-weight: 700; }
         .lb-table .rank-2 { color: #94a3b8; font-weight: 600; }
         .lb-table .rank-3 { color: #cd7f32; font-weight: 600; }
         .lb-table .medal { font-size: 1.2rem; }
-
         .lb-empty {
             color: #64748b;
             font-size: 0.85rem;
             padding: 0.8rem 0;
             text-align: center;
         }
-
         .lb-time {
             color: #94a3b8;
             font-size: 0.8rem;
             font-weight: 500;
         }
 
-        /* ---------- HIDDEN CONTENT ---------- */
+        /* ---------- HIDDEN CONTENT (UNLOCKED) ---------- */
         #hiddenContent {
             display: none;
             animation: fadeInContent 0.8s ease;
         }
 
         @keyframes fadeInContent {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ---------- SUCCESS BANNER (Shows when they pass) ---------- */
+        .success-banner {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.15), rgba(59, 130, 246, 0.15));
+            border: 2px solid rgba(34, 197, 94, 0.3);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .success-banner .big-icon {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .success-banner h2 {
+            color: #4ade80;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .success-banner p {
+            color: #cbd5e1;
+            font-size: 1.05rem;
+            margin-top: 0.3rem;
+        }
+
+        .success-banner .highlight-name {
+            color: #fbbf24;
+            font-weight: 700;
         }
 
         /* ---------- TUTOR SECTION ---------- */
@@ -690,6 +797,17 @@
             #resultSection .result-title { font-size: 1.4rem; }
             .lb-table { font-size: 0.8rem; }
             .lb-table th, .lb-table td { padding: 0.3rem 0.3rem; }
+            .name-options button { padding: 1rem 1.5rem; min-width: 120px; font-size: 1rem; }
+            #nameSelection h2 { font-size: 1.4rem; }
+            .success-banner h2 { font-size: 1.4rem; }
+            .success-banner .big-icon { font-size: 3rem; }
+        }
+
+        @media (max-width: 400px) {
+            .glass-card { padding: 1rem 0.8rem; }
+            .name-options { gap: 0.8rem; }
+            .name-options button { padding: 0.8rem 1rem; min-width: 100px; font-size: 0.9rem; }
+            .name-options button .name-emoji { font-size: 2rem; }
         }
     </style>
 </head>
@@ -711,12 +829,32 @@
     <div class="container">
         <div class="glass-card">
 
+            <!-- ===== NAME SELECTION ===== -->
+            <div id="nameSelection">
+                <div class="welcome-icon">👋</div>
+                <h2>Welcome, Intern!</h2>
+                <p>Please select your name to begin the quiz</p>
+                <div class="name-options">
+                    <button class="palesa" data-name="Palesa">
+                        <span class="name-emoji">👩🏾‍💻</span>
+                        Palesa
+                        <span class="name-label">IT Intern</span>
+                    </button>
+                    <button class="kekeletso" data-name="Kekeletso">
+                        <span class="name-emoji">👨🏾‍💻</span>
+                        Kekeletso
+                        <span class="name-label">IT Intern</span>
+                    </button>
+                </div>
+            </div>
+
             <!-- ===== QUIZ SECTION ===== -->
             <div id="quizSection">
                 <div class="quiz-header">
                     <div class="lock-icon">🔐</div>
                     <h2>Knowledge Check</h2>
                     <p>Answer all 5 questions correctly — you have <strong>30 seconds per question</strong></p>
+                    <div class="selected-name-badge">👤 <span id="selectedNameDisplay">—</span></div>
                 </div>
 
                 <div class="timer-container">
@@ -745,7 +883,6 @@
                 <div class="result-subtitle" id="resultMessage">You did it!</div>
                 <button class="btn-retry" id="retryBtn">🔄 Try Again</button>
 
-                <!-- Leaderboard -->
                 <div class="leaderboard-section">
                     <div class="lb-title"><i class="fas fa-trophy"></i> Leaderboard</div>
                     <div id="leaderboardContainer">
@@ -754,9 +891,21 @@
                 </div>
             </div>
 
-            <!-- ===== HIDDEN CONTENT (Unlocked) ===== -->
+            <!-- ===== HIDDEN CONTENT (UNLOCKED ON PERFECT SCORE) ===== -->
             <div id="hiddenContent">
 
+                <!-- SUCCESS BANNER - Shows they passed! -->
+                <div class="success-banner">
+                    <div class="big-icon">🏆</div>
+                    <h2>🎉 Access Granted! 🎉</h2>
+                    <p>
+                        <span class="highlight-name" id="studentNameDisplay">You</span> have successfully 
+                        completed the Knowledge Check with <strong style="color:#4ade80;">ALL 5 answers correct</strong>!
+                        <br />You've earned the right to see what you've accomplished so far.
+                    </p>
+                </div>
+
+                <!-- TUTOR SECTION -->
                 <div class="tutor-section">
                     <div class="tutor-avatar">👨‍🏫</div>
                     <div class="tutor-content">
@@ -764,7 +913,7 @@
                         <div class="tutor-name">Lefu Mlangeni</div>
                         <p>
                             It is an absolute privilege to guide 
-                            <span class="highlight" id="studentNameDisplay">you</span> 
+                            <span class="highlight" id="studentNameDisplay2">you</span> 
                             on this IT journey. 
                             Their willingness to learn, ask questions, and take initiative 
                             inspires me daily. They remind me that teaching is a two-way 
@@ -776,6 +925,7 @@
                     </div>
                 </div>
 
+                <!-- INTERNS -->
                 <div class="section-label">
                     <h2>🌟 The Interns</h2>
                     <span class="count">2</span>
@@ -801,8 +951,9 @@
                     </div>
                 </div>
 
+                <!-- SKILLS -->
                 <div class="skills-showcase">
-                    <div class="skills-label"><i class="fas fa-tools" style="margin-right:0.5rem; color:#3b82f6;"></i> Skills Acquired</div>
+                    <div class="skills-label"><i class="fas fa-tools" style="margin-right:0.5rem; color:#3b82f6;"></i> Skills Acquired So Far</div>
                     <div class="skills-pills">
                         <span><i class="fas fa-video"></i> Camera Installation</span>
                         <span><i class="fas fa-network-wired"></i> Cable Running</span>
@@ -813,9 +964,11 @@
                         <span><i class="fas fa-file-word"></i> Microsoft Office 365</span>
                         <span><i class="fas fa-download"></i> Software Installation</span>
                         <span><i class="fas fa-shield-alt"></i> Activation & Licensing</span>
+                        <span><i class="fas fa-network-wired"></i> DHCP Configuration</span>
                     </div>
                 </div>
 
+                <!-- FOOTER -->
                 <div class="footer-area">
                     <div class="footer-message">
                         <strong>🚀 Growth Mindset</strong><br />
@@ -825,40 +978,41 @@
                         <i class="fas fa-heart" style="color:#ec4899;"></i> Built with pride
                     </div>
                 </div>
-            </div>
+
+            </div><!-- /hiddenContent -->
 
         </div>
     </div>
 
     <script>
         // ============================================================
-        // QUIZ DATA
+        // QUIZ DATA — 5 Questions
         // ============================================================
         const questions = [{
             id: 1,
-            text: "Are you Kekeletso or Palesa? (This will be used for your congratulatory message)",
-            options: ["Kekeletso", "Palesa"],
-            correct: "Kekeletso"
-        }, {
-            id: 2,
             text: "What tool did you use to crimp the RJ45 cable?",
             options: ["Crimping Tool", "Screwdriver", "Multimeter", "Wire Stripper"],
             correct: "Crimping Tool"
         }, {
-            id: 3,
+            id: 2,
             text: "Which device did you connect the access point to for internet access?",
             options: ["Switch", "Router", "Modem", "Hub"],
             correct: "Router"
         }, {
-            id: 4,
+            id: 3,
             text: "What is the first step when installing a new HP LaserJet toner?",
-            options: ["Shake the toner", "Remove old cartridge", "Turn off the printer", "Open front cover"],
+            options: ["Shake the toner", "Remove the old cartridge", "Turn off the printer", "Open the front cover"],
             correct: "Turn off the printer"
         }, {
-            id: 5,
+            id: 4,
             text: "What type of cable did you run to connect the access point?",
             options: ["Coaxial", "Ethernet (Cat5e/Cat6)", "Fiber Optic", "USB"],
             correct: "Ethernet (Cat5e/Cat6)"
+        }, {
+            id: 5,
+            text: "Which network protocol automatically assigns an IP address and essential network parameters to devices joining a network, removing the need for manual setup?",
+            options: ["DNS", "DHCP", "HTTP", "FTP"],
+            correct: "DHCP"
         }];
 
         // ============================================================
@@ -878,6 +1032,7 @@
         let totalTimeTaken = 0;
 
         // DOM refs
+        const nameSelection = document.getElementById('nameSelection');
         const quizSection = document.getElementById('quizSection');
         const resultSection = document.getElementById('resultSection');
         const hiddenContent = document.getElementById('hiddenContent');
@@ -889,9 +1044,23 @@
         const retryBtn = document.getElementById('retryBtn');
         const timerBar = document.getElementById('timerBar');
         const timerDisplay = document.getElementById('timerDisplay');
+        const selectedNameDisplay = document.getElementById('selectedNameDisplay');
 
         // ============================================================
-        // LEADERBOARD (localStorage)
+        // NAME SELECTION
+        // ============================================================
+        document.querySelectorAll('.name-options button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                selectedStudent = this.dataset.name;
+                selectedNameDisplay.textContent = selectedStudent;
+                nameSelection.style.display = 'none';
+                quizSection.style.display = 'block';
+                renderQuestion();
+            });
+        });
+
+        // ============================================================
+        // LEADERBOARD
         // ============================================================
         function getLeaderboard() {
             try {
@@ -902,7 +1071,6 @@
         function saveLeaderboard(entry) {
             const lb = getLeaderboard();
             lb.push(entry);
-            // Sort by time (fastest first), then by date
             lb.sort((a, b) => a.timeSeconds - b.timeSeconds);
             localStorage.setItem('itInternsLeaderboard', JSON.stringify(lb));
         }
@@ -919,13 +1087,7 @@
             let html = `
                 <table class="lb-table">
                     <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Score</th>
-                            <th>Time</th>
-                            <th>Date</th>
-                        </tr>
+                        <tr><th>#</th><th>Name</th><th>Score</th><th>Time</th><th>Date</th></tr>
                     </thead>
                     <tbody>
             `;
@@ -977,9 +1139,7 @@
 
                 if (timeLeft <= 0) {
                     clearInterval(timerInterval);
-                    // Time's up — auto-submit wrong answer
                     if (!answered) {
-                        // Mark all options disabled, highlight correct
                         const q = questions[currentQ];
                         document.querySelectorAll('.option-btn').forEach(btn => {
                             btn.disabled = true;
@@ -988,7 +1148,6 @@
                             }
                         });
                         answered = true;
-                        // Don't increment score
                         nextBtn.disabled = false;
                         timerBar.style.width = '0%';
                         timerDisplay.textContent = '⏰ Time\'s up!';
@@ -1001,12 +1160,9 @@
         function updateTimerDisplay() {
             const pct = (timeLeft / TIME_PER_QUESTION) * 100;
             timerBar.style.width = pct + '%';
-
-            // Color coding
             timerBar.classList.remove('warning', 'danger');
             if (pct <= 20) timerBar.classList.add('danger');
             else if (pct <= 50) timerBar.classList.add('warning');
-
             timerDisplay.textContent = timeLeft;
             timerDisplay.style.color = pct <= 20 ? '#ef4444' : pct <= 50 ? '#fbbf24' : '#94a3b8';
         }
@@ -1047,16 +1203,12 @@
             liveScoreSpan.textContent = score;
             nextBtn.disabled = true;
             answered = false;
-
-            // Reset timer display color
             timerDisplay.style.color = '#94a3b8';
 
-            // Add event listeners
             document.querySelectorAll('.option-btn').forEach(btn => {
                 btn.addEventListener('click', () => handleOptionClick(btn));
             });
 
-            // Start timer
             startTimer();
         }
 
@@ -1071,10 +1223,6 @@
             const q = questions[currentQ];
             const selected = btn.dataset.opt;
             const isCorrect = selected === q.correct;
-
-            if (currentQ === 0) {
-                selectedStudent = selected;
-            }
 
             document.querySelectorAll('.option-btn').forEach(b => {
                 b.disabled = true;
@@ -1137,7 +1285,6 @@
                     <br /><br />👏 Your tutor, Lefu, is incredibly proud of you!
                 `;
 
-                // Save to leaderboard
                 if (selectedStudent) {
                     saveLeaderboard({
                         name: selectedStudent,
@@ -1151,13 +1298,15 @@
                 launchConfetti();
                 renderLeaderboard();
 
+                // UNLOCK THE HIDDEN CONTENT!
                 setTimeout(() => {
-                    document.getElementById('hiddenContent').style.display = 'block';
-                    const nameDisplay = document.getElementById('studentNameDisplay');
-                    if (nameDisplay && selectedStudent) {
-                        nameDisplay.textContent = selectedStudent;
-                    }
-                    document.getElementById('hiddenContent').scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    hiddenContent.style.display = 'block';
+                    // Update both name displays
+                    const nameDisplay1 = document.getElementById('studentNameDisplay');
+                    const nameDisplay2 = document.getElementById('studentNameDisplay2');
+                    if (nameDisplay1 && selectedStudent) nameDisplay1.textContent = selectedStudent;
+                    if (nameDisplay2 && selectedStudent) nameDisplay2.textContent = selectedStudent;
+                    hiddenContent.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }, 1200);
 
                 retryBtn.style.display = 'none';
@@ -1183,19 +1332,19 @@
         function launchConfetti() {
             const container = document.getElementById('confettiContainer');
             const colors = ['#fbbf24', '#ef4444', '#22c55e', '#3b82f6', '#ec4899', '#8b5cf6', '#06b6d4'];
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < 120; i++) {
                 const c = document.createElement('div');
                 c.className = 'confetti';
                 c.style.left = Math.random() * 100 + '%';
                 c.style.background = colors[Math.floor(Math.random() * colors.length)];
-                c.style.width = Math.random() * 8 + 4 + 'px';
-                c.style.height = Math.random() * 8 + 4 + 'px';
+                c.style.width = Math.random() * 10 + 4 + 'px';
+                c.style.height = Math.random() * 10 + 4 + 'px';
                 c.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
-                c.style.animationDuration = Math.random() * 2 + 2 + 's';
+                c.style.animationDuration = Math.random() * 2.5 + 1.5 + 's';
                 c.style.animationDelay = Math.random() * 2 + 's';
                 container.appendChild(c);
             }
-            setTimeout(() => container.innerHTML = '', 5000);
+            setTimeout(() => container.innerHTML = '', 6000);
         }
 
         // ============================================================
@@ -1205,13 +1354,12 @@
             stopTimer();
             currentQ = 0;
             score = 0;
-            selectedStudent = null;
             answered = false;
             quizCompleted = false;
             totalTimeTaken = 0;
             startTime = null;
 
-            document.getElementById('hiddenContent').style.display = 'none';
+            hiddenContent.style.display = 'none';
             resultSection.style.display = 'none';
             quizSection.style.display = 'block';
             retryBtn.style.display = 'inline-block';
@@ -1223,30 +1371,25 @@
         // ============================================================
         // TIME TRACKING
         // ============================================================
-        // Track total time from start to finish
         function trackTime() {
             if (!startTime) startTime = Date.now();
-            // Update total time on each question change
             if (currentQ > 0 || answered) {
                 totalTimeTaken = (Date.now() - startTime) / 1000;
             }
         }
 
-        // Override renderQuestion to track time
         const originalRender = renderQuestion;
         renderQuestion = function() {
             trackTime();
             originalRender.call(this);
         };
 
-        // Override goToNext to track time
         const originalNext = goToNext;
         goToNext = function() {
             trackTime();
             originalNext.call(this);
         };
 
-        // Override showResults to finalize time
         const originalResults = showResults;
         showResults = function() {
             if (startTime) {
@@ -1265,7 +1408,10 @@
         // INIT
         // ============================================================
         renderLeaderboard();
-        renderQuestion();
+        nameSelection.style.display = 'block';
+        quizSection.style.display = 'none';
+        resultSection.style.display = 'none';
+        hiddenContent.style.display = 'none';
     </script>
 
 </body>
