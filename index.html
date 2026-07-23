@@ -21,7 +21,6 @@
 
         body {
             font-family: "Inter", sans-serif;
-            background: #0a0e1a;
             min-height: 100vh;
             min-height: 100dvh;
             display: flex;
@@ -31,9 +30,43 @@
             position: relative;
             overflow-x: hidden;
             -webkit-overflow-scrolling: touch;
+            background: #0a0e1a;
         }
 
-        /* ---------- ANIMATED BACKGROUND (Optimized for mobile) ---------- */
+        /* ===== BACKGROUND IMAGE ===== */
+        .bg-image {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background-image: url('images.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            animation: bgFadeIn 1.5s ease;
+        }
+
+        @keyframes bgFadeIn {
+            from { opacity: 0; transform: scale(1.05); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Dark overlay for readability */
+        .bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            background: rgba(10, 14, 26, 0.75);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+        }
+
+        /* ---------- ANIMATED BACKGROUND ELEMENTS ---------- */
         .bg-canvas {
             position: fixed;
             top: 0;
@@ -66,7 +99,7 @@
             position: absolute;
             width: 3px;
             height: 3px;
-            background: rgba(59, 130, 246, 0.2);
+            background: rgba(59, 130, 246, 0.15);
             border-radius: 50%;
             pointer-events: none;
             animation: pulseParticle 3s ease-in-out infinite;
@@ -74,11 +107,7 @@
 
         @keyframes pulseParticle {
             0%, 100% { opacity: 0.2; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(1.3); }
-        }
-
-        .network-line {
-            display: none;
+            50% { opacity: 0.5; transform: scale(1.3); }
         }
 
         .tech-icon {
@@ -108,7 +137,7 @@
         .glow-orb-1 {
             width: 300px;
             height: 300px;
-            background: rgba(59, 130, 246, 0.08);
+            background: rgba(59, 130, 246, 0.06);
             top: -150px;
             right: -150px;
             animation-delay: 0s;
@@ -117,14 +146,10 @@
         .glow-orb-2 {
             width: 250px;
             height: 250px;
-            background: rgba(139, 92, 246, 0.06);
+            background: rgba(139, 92, 246, 0.04);
             bottom: -100px;
             left: -100px;
             animation-delay: -5s;
-        }
-
-        .glow-orb-3 {
-            display: none;
         }
 
         @keyframes orbFloat {
@@ -369,10 +394,6 @@
 
         .name-options button.kekeletso:active {
             border-color: #06b6d4;
-        }
-
-        .name-options button .pulse-ring {
-            display: none;
         }
 
         /* ---------- QUIZ SECTION ---------- */
@@ -1165,9 +1186,9 @@
             100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
         }
 
-        /* ---------- MOBILE SPECIFIC OPTIMIZATIONS ---------- */
-        /* Tablet and small screens */
+        /* ---------- MOBILE OPTIMIZATIONS ---------- */
         @media (max-width: 768px) {
+            .bg-overlay { backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
             .glass-card { padding: 1.2rem 0.8rem 1rem; border-radius: 1.5rem; }
             .typing-text { font-size: 1.2rem; }
             .typing-text .cursor { height: 1.2rem; }
@@ -1193,8 +1214,8 @@
             .whatsapp-float a { width: 50px; height: 50px; font-size: 1.6rem; }
         }
 
-        /* Small phones */
         @media (max-width: 480px) {
+            .bg-overlay { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
             body { padding: 0.5rem; }
             .glass-card { padding: 1rem 0.6rem 0.8rem; border-radius: 1.2rem; }
             .typing-text { font-size: 1rem; }
@@ -1249,8 +1270,8 @@
             .leaderboard-section .lb-title { font-size: 0.55rem; }
         }
 
-        /* Extra small phones */
         @media (max-width: 380px) {
+            .bg-overlay { backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
             .name-options button { min-width: 80px; max-width: 110px; font-size: 0.75rem; }
             .name-options button .name-avatar { width: 40px; height: 40px; }
             .gallery-grid { grid-template-columns: repeat(2, 1fr); }
@@ -1262,7 +1283,11 @@
 </head>
 <body>
 
-    <!-- ===== ANIMATED BACKGROUND ===== -->
+    <!-- ===== BACKGROUND IMAGE ===== -->
+    <div class="bg-image" role="img" aria-label="TFS Retail Background"></div>
+    <div class="bg-overlay"></div>
+
+    <!-- ===== ANIMATED BACKGROUND ELEMENTS ===== -->
     <div class="bg-canvas" id="bgCanvas">
         <div class="glow-orb glow-orb-1"></div>
         <div class="glow-orb glow-orb-2"></div>
@@ -1512,7 +1537,7 @@
 
     <script>
         // ============================================================
-        // BACKGROUND NETWORK PARTICLES (mobile optimized)
+        // BACKGROUND NETWORK PARTICLES
         // ============================================================
         function createNetworkParticles() {
             const canvas = document.getElementById('bgCanvas');
@@ -1532,7 +1557,7 @@
         createNetworkParticles();
 
         // ============================================================
-        // TYPING ANIMATION (mobile optimized)
+        // TYPING ANIMATION
         // ============================================================
         function startTyping() {
             const text = "Welcome to TFS Retail, Interns";
@@ -1942,7 +1967,6 @@
             if (q.type === 'mcq') {
                 document.querySelectorAll('.option-btn').forEach(btn => {
                     btn.addEventListener('click', () => handleMCQClick(btn));
-                    // Touch feedback
                     btn.addEventListener('touchstart', function() {
                         this.style.transform = 'scale(0.97)';
                     }, { passive: true });
