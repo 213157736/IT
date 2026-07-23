@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>IT Interns | Palesa & Kekeletso</title>
+    <title>TFS Retail | IT Interns</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
@@ -16,50 +16,136 @@
 
         body {
             font-family: "Inter", sans-serif;
-            background: #0b1120;
+            background: #0a0e1a;
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 2rem 1rem;
             position: relative;
-            overflow-x: hidden;
+            overflow: hidden;
         }
 
-        body::before {
-            content: '';
+        /* ---------- ANIMATED BACKGROUND ---------- */
+        .bg-canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: 
-                linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-            pointer-events: none;
             z-index: 0;
+            overflow: hidden;
         }
 
-        .orb {
+        /* Floating code characters */
+        .code-float {
+            position: absolute;
+            font-family: "Courier New", monospace;
+            color: rgba(59, 130, 246, 0.08);
+            font-size: 1.2rem;
+            pointer-events: none;
+            animation: floatCode 25s linear infinite;
+            white-space: nowrap;
+        }
+
+        @keyframes floatCode {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+        }
+
+        /* Network particles */
+        .network-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: rgba(59, 130, 246, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: pulseParticle 3s ease-in-out infinite;
+        }
+
+        @keyframes pulseParticle {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.5); }
+        }
+
+        .network-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.1), transparent);
+            pointer-events: none;
+            transform-origin: left center;
+            animation: linePulse 4s ease-in-out infinite;
+        }
+
+        @keyframes linePulse {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 0.6; }
+        }
+
+        /* Floating tech icons */
+        .tech-icon {
+            position: absolute;
+            font-size: 2.5rem;
+            pointer-events: none;
+            opacity: 0.06;
+            animation: floatIcon 20s ease-in-out infinite;
+        }
+
+        @keyframes floatIcon {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(30px, -20px) rotate(5deg); }
+            50% { transform: translate(-20px, 30px) rotate(-3deg); }
+            75% { transform: translate(15px, -15px) rotate(4deg); }
+        }
+
+        /* Glowing orbs */
+        .glow-orb {
             position: fixed;
             border-radius: 50%;
-            filter: blur(80px);
-            opacity: 0.3;
+            filter: blur(100px);
             pointer-events: none;
             z-index: 0;
-            animation: floatOrb 20s ease-in-out infinite;
+            animation: orbFloat 15s ease-in-out infinite;
         }
-        .orb-1 { width: 400px; height: 400px; background: #3b82f6; top: -100px; right: -100px; }
-        .orb-2 { width: 300px; height: 300px; background: #8b5cf6; bottom: -50px; left: -50px; animation-delay: -7s; }
-        .orb-3 { width: 200px; height: 200px; background: #06b6d4; top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: -14s; opacity: 0.15; }
 
-        @keyframes floatOrb {
+        .glow-orb-1 {
+            width: 500px;
+            height: 500px;
+            background: rgba(59, 130, 246, 0.12);
+            top: -200px;
+            right: -200px;
+            animation-delay: 0s;
+        }
+
+        .glow-orb-2 {
+            width: 400px;
+            height: 400px;
+            background: rgba(139, 92, 246, 0.08);
+            bottom: -150px;
+            left: -150px;
+            animation-delay: -5s;
+        }
+
+        .glow-orb-3 {
+            width: 300px;
+            height: 300px;
+            background: rgba(6, 182, 212, 0.06);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation-delay: -10s;
+        }
+
+        @keyframes orbFloat {
             0%, 100% { transform: translate(0, 0) scale(1); }
-            33% { transform: translate(30px, -30px) scale(1.1); }
-            66% { transform: translate(-20px, 20px) scale(0.9); }
+            33% { transform: translate(40px, -30px) scale(1.1); }
+            66% { transform: translate(-30px, 20px) scale(0.9); }
         }
 
+        /* ---------- MAIN CONTAINER ---------- */
         .container {
             max-width: 950px;
             width: 100%;
@@ -67,47 +153,133 @@
             z-index: 1;
         }
 
+        /* ---------- GLASS CARD ---------- */
         .glass-card {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
             border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 2.5rem;
             padding: 2.5rem 2.5rem 2rem;
             box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.8);
             min-height: 500px;
+            position: relative;
+            overflow: hidden;
         }
 
-        /* ---------- NAME SELECTION ---------- */
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 50%, rgba(59, 130, 246, 0.03), transparent 50%);
+            pointer-events: none;
+            animation: cardShine 15s ease-in-out infinite;
+        }
+
+        @keyframes cardShine {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(10%, 10%) rotate(5deg); }
+        }
+
+        /* ---------- NAME SELECTION (ANIMATED) ---------- */
         #nameSelection {
             display: block;
             text-align: center;
-            padding: 2rem 0;
+            padding: 1rem 0;
+            position: relative;
+            z-index: 1;
         }
 
-        #nameSelection .welcome-icon {
-            font-size: 3.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        #nameSelection h2 {
-            color: #ffffff;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 0.3rem;
-        }
-
-        #nameSelection p {
-            color: #94a3b8;
-            font-size: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        #nameSelection .question-count-badge {
+        .welcome-badge {
             display: inline-block;
             background: rgba(59, 130, 246, 0.15);
             border: 1px solid rgba(59, 130, 246, 0.2);
             color: #60a5fa;
+            padding: 0.3rem 1.5rem;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            animation: pulseBadge 3s ease-in-out infinite;
+        }
+
+        @keyframes pulseBadge {
+            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0); }
+            50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.15); }
+        }
+
+        .company-logo {
+            font-size: 3.5rem;
+            margin-bottom: 0.3rem;
+            display: block;
+            animation: floatLogo 4s ease-in-out infinite;
+        }
+
+        @keyframes floatLogo {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-8px) scale(1.02); }
+        }
+
+        .typing-container {
+            min-height: 5rem;
+        }
+
+        .typing-text {
+            color: #ffffff;
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            line-height: 1.2;
+        }
+
+        .typing-text .highlight-blue {
+            color: #3b82f6;
+        }
+
+        .typing-text .cursor {
+            display: inline-block;
+            width: 3px;
+            height: 2.4rem;
+            background: #3b82f6;
+            margin-left: 2px;
+            animation: blink 0.8s step-end infinite;
+            vertical-align: text-bottom;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .typing-sub {
+            color: #94a3b8;
+            font-size: 1.05rem;
+            margin-top: 0.2rem;
+        }
+
+        .typing-sub .highlight-text {
+            color: #fbbf24;
+            font-weight: 500;
+        }
+
+        .divider-line {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #3b82f6, transparent);
+            margin: 1.2rem auto;
+            border-radius: 999px;
+        }
+
+        .question-count-badge {
+            display: inline-block;
+            background: rgba(251, 191, 36, 0.1);
+            border: 1px solid rgba(251, 191, 36, 0.15);
+            color: #fbbf24;
             padding: 0.3rem 1.5rem;
             border-radius: 999px;
             font-size: 0.85rem;
@@ -115,72 +287,145 @@
             margin-bottom: 1.5rem;
         }
 
+        .question-count-badge i {
+            margin-right: 0.4rem;
+        }
+
         .name-options {
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
+            gap: 2rem;
             flex-wrap: wrap;
+            margin-top: 0.5rem;
         }
 
         .name-options button {
-            background: rgba(255, 255, 255, 0.06);
-            border: 2px solid rgba(255, 255, 255, 0.08);
-            border-radius: 1.2rem;
-            padding: 1.5rem 2.5rem;
+            background: rgba(255, 255, 255, 0.04);
+            border: 2px solid rgba(255, 255, 255, 0.06);
+            border-radius: 1.5rem;
+            padding: 2rem 2.5rem;
             color: #e2e8f0;
             font-family: "Inter", sans-serif;
             font-size: 1.2rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0.3rem;
-            min-width: 160px;
+            gap: 0.5rem;
+            min-width: 180px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .name-options button::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 1.5rem;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .name-options button:hover::before {
+            opacity: 1;
         }
 
         .name-options button .name-avatar {
-            width: 80px;
-            height: 80px;
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
             object-fit: cover;
             border: 3px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            margin-bottom: 0.3rem;
-        }
-
-        .name-options button:hover .name-avatar {
-            border-color: #3b82f6;
-            transform: scale(1.05);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 1;
         }
 
         .name-options button .name-label {
             font-size: 0.7rem;
             color: #64748b;
             font-weight: 400;
+            position: relative;
+            z-index: 1;
+        }
+
+        .name-options button .enter-icon {
+            font-size: 1.2rem;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            z-index: 1;
+        }
+
+        .name-options button:hover .enter-icon {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .name-options button:hover .name-avatar {
+            border-color: #3b82f6;
+            transform: scale(1.05);
+            box-shadow: 0 0 40px rgba(59, 130, 246, 0.2);
         }
 
         .name-options button:hover {
-            background: rgba(59, 130, 246, 0.15);
-            border-color: #3b82f6;
-            transform: translateY(-4px);
-            box-shadow: 0 12px 32px -12px rgba(59, 130, 246, 0.3);
+            transform: translateY(-6px);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.5);
         }
 
         .name-options button.palesa:hover {
             border-color: #ec4899;
-            box-shadow: 0 12px 32px -12px rgba(236, 72, 153, 0.3);
+            box-shadow: 0 20px 40px -12px rgba(236, 72, 153, 0.2);
+        }
+
+        .name-options button.palesa:hover .name-avatar {
+            border-color: #ec4899;
+            box-shadow: 0 0 40px rgba(236, 72, 153, 0.2);
         }
 
         .name-options button.kekeletso:hover {
             border-color: #06b6d4;
-            box-shadow: 0 12px 32px -12px rgba(6, 182, 212, 0.3);
+            box-shadow: 0 20px 40px -12px rgba(6, 182, 212, 0.2);
+        }
+
+        .name-options button.kekeletso:hover .name-avatar {
+            border-color: #06b6d4;
+            box-shadow: 0 0 40px rgba(6, 182, 212, 0.2);
+        }
+
+        .name-options button .pulse-ring {
+            position: absolute;
+            inset: -4px;
+            border-radius: 50%;
+            border: 2px solid rgba(59, 130, 246, 0.2);
+            opacity: 0;
+            transition: all 0.6s ease;
+        }
+
+        .name-options button:hover .pulse-ring {
+            opacity: 1;
+            animation: pulseRing 2s ease-out infinite;
+        }
+
+        @keyframes pulseRing {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(1.5); opacity: 0; }
         }
 
         /* ---------- QUIZ SECTION ---------- */
         #quizSection {
             display: none;
+            animation: fadeInSection 0.6s ease;
+        }
+
+        @keyframes fadeInSection {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .quiz-header {
@@ -192,6 +437,12 @@
             font-size: 2.5rem;
             color: #fbbf24;
             margin-bottom: 0.3rem;
+            animation: floatLock 3s ease-in-out infinite;
+        }
+
+        @keyframes floatLock {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
         }
 
         .quiz-header h2 {
@@ -275,6 +526,7 @@
             border-radius: 1.2rem;
             padding: 1.5rem;
             margin-bottom: 1rem;
+            transition: all 0.3s ease;
         }
 
         .question-container .q-number {
@@ -482,6 +734,7 @@
             display: none;
             text-align: center;
             padding: 1.5rem 0;
+            animation: fadeInSection 0.6s ease;
         }
 
         #resultSection .result-icon { font-size: 4rem; margin-bottom: 0.5rem; }
@@ -575,7 +828,7 @@
             font-weight: 500;
         }
 
-        /* ---------- HIDDEN CONTENT (UNLOCKED) ---------- */
+        /* ---------- HIDDEN CONTENT ---------- */
         #hiddenContent {
             display: none;
             animation: fadeInContent 0.8s ease;
@@ -978,32 +1231,65 @@
             #resultSection .result-title { font-size: 1.4rem; }
             .lb-table { font-size: 0.8rem; }
             .lb-table th, .lb-table td { padding: 0.3rem 0.3rem; }
-            .name-options button { padding: 1rem 1.5rem; min-width: 120px; font-size: 1rem; }
-            .name-options button .name-avatar { width: 60px; height: 60px; }
+            .name-options button { padding: 1.2rem 1.5rem; min-width: 140px; font-size: 1rem; }
+            .name-options button .name-avatar { width: 70px; height: 70px; }
             .success-banner h2 { font-size: 1.4rem; }
             .success-banner .big-icon { font-size: 3rem; }
             .fill-container { flex-direction: column; align-items: stretch; }
             .fill-input { max-width: 100%; }
             .fill-submit-btn { margin-left: 0; }
+            .typing-text { font-size: 1.6rem; }
+            .typing-text .cursor { height: 1.6rem; }
+            .company-logo { font-size: 2.8rem; }
         }
 
         @media (max-width: 400px) {
             .glass-card { padding: 1rem 0.8rem; }
             .name-options { gap: 0.8rem; }
             .name-options button { padding: 0.8rem 1rem; min-width: 100px; font-size: 0.9rem; }
-            .name-options button .name-avatar { width: 50px; height: 50px; }
+            .name-options button .name-avatar { width: 60px; height: 60px; }
             .gallery-grid { grid-template-columns: 1fr 1fr; }
+            .typing-text { font-size: 1.2rem; }
+            .typing-text .cursor { height: 1.2rem; }
+            .company-logo { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="orb orb-1"></div>
-    <div class="orb orb-2"></div>
-    <div class="orb orb-3"></div>
+    <!-- ===== ANIMATED BACKGROUND ===== -->
+    <div class="bg-canvas" id="bgCanvas">
+        <!-- Glowing Orbs -->
+        <div class="glow-orb glow-orb-1"></div>
+        <div class="glow-orb glow-orb-2"></div>
+        <div class="glow-orb glow-orb-3"></div>
 
+        <!-- Floating Tech Icons -->
+        <div class="tech-icon" style="top:5%;left:3%;font-size:3rem;animation-delay:0s;">🏪</div>
+        <div class="tech-icon" style="top:15%;right:5%;font-size:2.5rem;animation-delay:-3s;">☁️</div>
+        <div class="tech-icon" style="bottom:20%;left:2%;font-size:3.5rem;animation-delay:-6s;">🌐</div>
+        <div class="tech-icon" style="bottom:10%;right:3%;font-size:2.8rem;animation-delay:-9s;">📡</div>
+        <div class="tech-icon" style="top:45%;left:1%;font-size:2rem;animation-delay:-12s;">⚡</div>
+        <div class="tech-icon" style="top:60%;right:1%;font-size:2.2rem;animation-delay:-15s;">🛒</div>
+        <div class="tech-icon" style="top:30%;left:50%;font-size:2rem;animation-delay:-4s;">📶</div>
+        <div class="tech-icon" style="top:80%;left:8%;font-size:2rem;animation-delay:-7s;">🖥️</div>
+        <div class="tech-icon" style="top:70%;right:8%;font-size:2.3rem;animation-delay:-11s;">🔒</div>
+
+        <!-- Floating Code -->
+        <div class="code-float" style="left:5%;animation-duration:28s;animation-delay:0s;">&lt;tfs&gt;</div>
+        <div class="code-float" style="left:15%;animation-duration:32s;animation-delay:-4s;">{ "store": "retail" }</div>
+        <div class="code-float" style="left:25%;animation-duration:26s;animation-delay:-8s;">const ip = "192.168.1.1";</div>
+        <div class="code-float" style="left:40%;animation-duration:30s;animation-delay:-2s;">&lt;div class="network"&gt;</div>
+        <div class="code-float" style="left:55%;animation-duration:34s;animation-delay:-6s;">function connect() {</div>
+        <div class="code-float" style="left:70%;animation-duration:28s;animation-delay:-10s;">sudo apt update</div>
+        <div class="code-float" style="left:82%;animation-duration:31s;animation-delay:-3s;">ping 8.8.8.8</div>
+        <div class="code-float" style="left:92%;animation-duration:27s;animation-delay:-7s;">&lt;/tfs&gt;</div>
+    </div>
+
+    <!-- ===== CONFETTI ===== -->
     <div class="confetti-container" id="confettiContainer"></div>
 
+    <!-- ===== FLOATING WHATSAPP ===== -->
     <div class="whatsapp-float">
         <a href="https://chat.whatsapp.com/Cc01ZRMDx6V7gGmZofLBJk" target="_blank">
             <i class="fab fa-whatsapp"></i>
@@ -1011,25 +1297,55 @@
         </a>
     </div>
 
+    <!-- ===== MAIN CONTAINER ===== -->
     <div class="container">
         <div class="glass-card">
 
-            <!-- ===== NAME SELECTION ===== -->
+            <!-- ===== NAME SELECTION (ANIMATED) ===== -->
             <div id="nameSelection">
-                <div class="welcome-icon">👋</div>
-                <h2>Welcome, Intern!</h2>
-                <p>Please select your name to begin the quiz</p>
-                <div class="question-count-badge">📝 25 Questions · Pass: 22/25</div>
+                <div class="welcome-badge">
+                    <i class="fas fa-store"></i> TFS Retail · IT Internship
+                </div>
+
+                <span class="company-logo">🏪</span>
+
+                <div class="typing-container">
+                    <div class="typing-text" id="typingText">
+                        Welcome to <span class="highlight-blue">TFS Retail</span>, <span style="color:#fbbf24;">Interns</span><span class="cursor"></span>
+                    </div>
+                    <div class="typing-sub">
+                        🚀 <span class="highlight-text">Palesa</span> &amp; <span class="highlight-text">Kekeletso</span> — your IT journey starts here
+                    </div>
+                </div>
+
+                <div class="divider-line"></div>
+
+                <div class="question-count-badge">
+                    <i class="fas fa-pencil-alt"></i> 25 Questions · Pass: 22/25
+                </div>
+
+                <p style="color:#94a3b8;font-size:0.9rem;margin-bottom:1.5rem;">
+                    👆 Select your name to begin the challenge
+                </p>
+
                 <div class="name-options">
                     <button class="palesa" data-name="Palesa">
-                        <img src="Palesa.jpeg" alt="Palesa" class="name-avatar" />
+                        <div style="position:relative;">
+                            <img src="Palesa.jpeg" alt="Palesa" class="name-avatar" />
+                            <div class="pulse-ring"></div>
+                        </div>
                         Palesa
                         <span class="name-label">IT Intern</span>
+                        <span class="enter-icon">→ Click to Start</span>
                     </button>
                     <button class="kekeletso" data-name="Kekeletso">
-                        <img src="Kekeletso.jpeg" alt="Kekeletso" class="name-avatar" />
+                        <div style="position:relative;">
+                            <img src="Kekeletso.jpeg" alt="Kekeletso" class="name-avatar" />
+                            <div class="pulse-ring"></div>
+                        </div>
                         Kekeletso
                         <span class="name-label">IT Intern</span>
+                        <span class="enter-icon">→ Click to Start</span>
                     </button>
                 </div>
             </div>
@@ -1078,7 +1394,7 @@
                 </div>
             </div>
 
-            <!-- ===== HIDDEN CONTENT (UNLOCKED ON PASS) ===== -->
+            <!-- ===== HIDDEN CONTENT ===== -->
             <div id="hiddenContent">
 
                 <div class="success-banner">
@@ -1087,23 +1403,23 @@
                     <p>
                         <span class="highlight-name" id="studentNameDisplay">You</span> have successfully 
                         completed the Knowledge Check with <strong style="color:#4ade80;">22+ answers correct</strong>!
-                        <br />You've earned the right to see what you've accomplished so far.
+                        <br />You've earned the right to see what you've accomplished so far at <strong style="color:#fbbf24;">TFS Retail</strong>.
                     </p>
                 </div>
 
                 <div class="tutor-section">
                     <img src="Tutor.jpeg" alt="Lefu Mlangeni" class="tutor-avatar" />
                     <div class="tutor-content">
-                        <span class="tutor-role">⭐ Lead Tutor & Mentor</span>
+                        <span class="tutor-role">⭐ Lead Tutor & Mentor · TFS Retail</span>
                         <div class="tutor-name">Lefu Mlangeni</div>
                         <p>
                             It is an absolute privilege to guide 
                             <span class="highlight" id="studentNameDisplay2">you</span> 
-                            on this IT journey. 
-                            Their willingness to learn, ask questions, and take initiative 
-                            inspires me daily. They remind me that teaching is a two-way 
-                            street — <span class="highlight">I am learning just as much from them</span>. 
-                            Seeing them grow from installing cameras to configuring networks 
+                            on this IT journey at TFS Retail. 
+                            Your willingness to learn, ask questions, and take initiative 
+                            inspires me daily. You remind me that teaching is a two-way 
+                            street — <span class="highlight">I am learning just as much from you</span>. 
+                            Seeing you grow from installing cameras to configuring networks 
                             in such a short time fills me with pride. This is what 
                             mentorship is all about.
                         </p>
@@ -1118,7 +1434,7 @@
                     <div class="intern-card">
                         <img src="Palesa.jpeg" alt="Palesa" class="intern-photo" />
                         <div class="name">Palesa</div>
-                        <div class="role-tag">IT Intern</div>
+                        <div class="role-tag">IT Intern · TFS Retail</div>
                         <div class="achievement-badge">
                             <span>📷 Cameras</span><span>🔌 Cabling</span>
                             <span>📡 Access Point</span><span>🔨 RJ45</span>
@@ -1127,7 +1443,7 @@
                     <div class="intern-card">
                         <img src="Kekeletso.jpeg" alt="Kekeletso" class="intern-photo" />
                         <div class="name">Kekeletso</div>
-                        <div class="role-tag">IT Intern</div>
+                        <div class="role-tag">IT Intern · TFS Retail</div>
                         <div class="achievement-badge">
                             <span>📷 Cameras</span><span>🔌 Cabling</span>
                             <span>📡 Access Point</span><span>🔨 RJ45</span>
@@ -1137,7 +1453,7 @@
 
                 <div class="work-gallery">
                     <div class="gallery-label">
-                        <i class="fas fa-images"></i> What We've Been Working On
+                        <i class="fas fa-images"></i> What We've Been Working On at TFS Retail
                     </div>
                     <div class="gallery-grid">
                         <div class="gallery-item">
@@ -1176,11 +1492,15 @@
                             <div class="gallery-placeholder">☁️</div>
                             <div class="gallery-label-text">Cloud Server Basics</div>
                         </div>
+                        <div class="gallery-item">
+                            <div class="gallery-placeholder">🏪</div>
+                            <div class="gallery-label-text">TFS Retail Systems</div>
+                        </div>
                     </div>
                 </div>
 
                 <div class="skills-showcase">
-                    <div class="skills-label"><i class="fas fa-tools" style="margin-right:0.5rem; color:#3b82f6;"></i> Skills Acquired So Far</div>
+                    <div class="skills-label"><i class="fas fa-tools" style="margin-right:0.5rem; color:#3b82f6;"></i> Skills Acquired So Far at TFS Retail</div>
                     <div class="skills-pills">
                         <span><i class="fas fa-video"></i> Camera Installation</span>
                         <span><i class="fas fa-network-wired"></i> Cable Running</span>
@@ -1193,16 +1513,17 @@
                         <span><i class="fas fa-shield-alt"></i> Activation & Licensing</span>
                         <span><i class="fas fa-network-wired"></i> DHCP Configuration</span>
                         <span><i class="fas fa-server"></i> Private vs Public vs Hybrid</span>
+                        <span><i class="fas fa-store"></i> TFS Retail Operations</span>
                     </div>
                 </div>
 
                 <div class="footer-area">
                     <div class="footer-message">
                         <strong>🚀 Growth Mindset</strong><br />
-                        Every cable crimped, every scanner configured — it all adds up.<br />Proud of you both. Keep going.
+                        Every cable crimped, every scanner configured — it all adds up.<br />Proud of you both. Keep going at <strong style="color:#fbbf24;">TFS Retail</strong>!
                     </div>
                     <div class="footer-message" style="text-align:right; font-size:0.7rem; color:#64748b;">
-                        <i class="fas fa-heart" style="color:#ec4899;"></i> Built with pride
+                        <i class="fas fa-store" style="color:#3b82f6;"></i> TFS Retail · Built with pride
                     </div>
                 </div>
 
@@ -1213,172 +1534,249 @@
 
     <script>
         // ============================================================
-        // 25 QUESTIONS — Multiple Choice & Fill-in-the-blank
+        // BACKGROUND NETWORK PARTICLES
         // ============================================================
-        const questions = [
-            // --- HARDWARE & TOOLS ---
-            {
-                id: 1,
-                type: "mcq",
-                text: "What tool did you use to crimp the RJ45 cable?",
-                options: ["Crimping Tool", "Screwdriver", "Multimeter", "Wire Stripper"],
-                correct: "Crimping Tool"
-            }, {
-                id: 2,
-                type: "mcq",
-                text: "What type of cable did you run to connect the access point?",
-                options: ["Coaxial", "Ethernet (Cat5e/Cat6)", "Fiber Optic", "USB"],
-                correct: "Ethernet (Cat5e/Cat6)"
-            }, {
-                id: 3,
-                type: "mcq",
-                text: "What is the first step when installing a new HP LaserJet toner?",
-                options: ["Shake the toner", "Remove the old cartridge", "Turn off the printer", "Open the front cover"],
-                correct: "Turn off the printer"
-            }, {
-                id: 4,
-                type: "mcq",
-                text: "Which device did you connect the access point to for internet access?",
-                options: ["Switch", "Router", "Modem", "Hub"],
-                correct: "Router"
-            }, {
-                id: 5,
-                type: "mcq",
-                text: "The HoneyWell scanner at the tills uses which type of connection typically?",
-                options: ["USB", "Bluetooth", "Serial", "Parallel"],
-                correct: "USB"
-            },
+        function createNetworkParticles() {
+            const canvas = document.getElementById('bgCanvas');
+            const numParticles = 25;
+            const particles = [];
 
-            // --- NETWORKING ---
-            {
-                id: 6,
-                type: "mcq",
-                text: "Which network protocol automatically assigns IP addresses to devices?",
-                options: ["DNS", "DHCP", "HTTP", "FTP"],
-                correct: "DHCP"
-            }, {
-                id: 7,
-                type: "fill",
-                text: "The device that connects multiple devices on a local network and forwards data to the internet is called a ________.",
-                correct: "router"
-            }, {
-                id: 8,
-                type: "mcq",
-                text: "What does DNS stand for?",
-                options: ["Domain Name System", "Data Network Service", "Digital Name Server", "Dynamic Network System"],
-                correct: "Domain Name System"
-            }, {
-                id: 9,
-                type: "fill",
-                text: "The standard port number for HTTP is ________.",
-                correct: "80"
-            }, {
-                id: 10,
-                type: "mcq",
-                text: "Which IP address is used for localhost?",
-                options: ["127.0.0.1", "192.168.1.1", "8.8.8.8", "0.0.0.0"],
-                correct: "127.0.0.1"
-            },
+            for (let i = 0; i < numParticles; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'network-particle';
+                const x = Math.random() * 100;
+                const y = Math.random() * 100;
+                particle.style.left = x + '%';
+                particle.style.top = y + '%';
+                particle.style.animationDelay = (Math.random() * 5) + 's';
+                particle.style.width = (Math.random() * 4 + 2) + 'px';
+                particle.style.height = particle.style.width;
+                canvas.appendChild(particle);
+                particles.push({ el: particle, x, y });
 
-            // --- PRIVATE vs PUBLIC vs HYBRID SERVERS (IMPORTANT!) ---
-            {
-                id: 11,
-                type: "mcq",
-                text: "A server that is owned, operated, and used exclusively by a single organisation is called a ________ server.",
-                options: ["Public", "Private", "Hybrid", "Shared"],
-                correct: "Private"
-            }, {
-                id: 12,
-                type: "mcq",
-                text: "A server that is available to anyone over the internet and shared by multiple users is called a ________ server.",
-                options: ["Private", "Hybrid", "Public", "Dedicated"],
-                correct: "Public"
-            }, {
-                id: 13,
-                type: "mcq",
-                text: "A ________ server combines both private and public cloud resources, allowing data to move between them.",
-                options: ["Dedicated", "Hybrid", "Shared", "Virtual"],
-                correct: "Hybrid"
-            }, {
-                id: 14,
-                type: "fill",
-                text: "A ________ server is hosted on-premises and not accessible to the public internet.",
-                correct: "private"
-            }, {
-                id: 15,
-                type: "mcq",
-                text: "Which type of server is typically used for hosting a company's internal HR system?",
-                options: ["Public", "Hybrid", "Private", "Open"],
-                correct: "Private"
-            }, {
-                id: 16,
-                type: "mcq",
-                text: "Which type of server is most suitable for a web application with variable traffic that can scale up during peak times?",
-                options: ["Private", "Hybrid", "Public", "Local"],
-                correct: "Hybrid"
-            }, {
-                id: 17,
-                type: "fill",
-                text: "A server that is hosted by a third-party provider and shared by many customers is a ________ server.",
-                correct: "public"
-            }, {
-                id: 18,
-                type: "mcq",
-                text: "What is the main advantage of a hybrid server approach?",
-                options: [
-                    "It is always cheaper",
-                    "It offers flexibility to keep sensitive data private while scaling publicly",
-                    "It never requires maintenance",
-                    "It works without an internet connection"
-                ],
-                correct: "It offers flexibility to keep sensitive data private while scaling publicly"
-            },
-
-            // --- SOFTWARE & OFFICE ---
-            {
-                id: 19,
-                type: "mcq",
-                text: "What is the first step after downloading Microsoft Office?",
-                options: ["Run the installer", "Open a document", "Check for updates", "Activate the license"],
-                correct: "Run the installer"
-            }, {
-                id: 20,
-                type: "fill",
-                text: "The software used to create spreadsheets in Microsoft Office is called ________.",
-                correct: "excel"
-            }, {
-                id: 21,
-                type: "mcq",
-                text: "Which Microsoft Office application is used for presentations?",
-                options: ["Word", "Excel", "PowerPoint", "Outlook"],
-                correct: "PowerPoint"
-            }, {
-                id: 22,
-                type: "fill",
-                text: "A product key is required to ________ Microsoft Office after installation.",
-                correct: "activate"
-            },
-
-            // --- GENERAL IT ---
-            {
-                id: 23,
-                type: "mcq",
-                text: "What does 'IT' stand for?",
-                options: ["Internet Technology", "Information Technology", "Integrated Tools", "Intelligent Terminals"],
-                correct: "Information Technology"
-            }, {
-                id: 24,
-                type: "fill",
-                text: "A ________ is a set of instructions that tells a computer what to do.",
-                correct: "program"
-            }, {
-                id: 25,
-                type: "mcq",
-                text: "Which of the following is NOT a type of server deployment?",
-                options: ["Private", "Public", "Hybrid", "Vertical"],
-                correct: "Vertical"
+                if (i > 0 && Math.random() > 0.6) {
+                    const line = document.createElement('div');
+                    line.className = 'network-line';
+                    const prev = particles[i - 1];
+                    const dx = prev.x - x;
+                    const dy = prev.y - y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < 40) {
+                        const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+                        line.style.width = dist + '%';
+                        line.style.left = Math.min(prev.x, x) + '%';
+                        line.style.top = Math.min(prev.y, y) + '%';
+                        line.style.transform = `rotate(${angle}deg)`;
+                        line.style.animationDelay = (Math.random() * 4) + 's';
+                        canvas.appendChild(line);
+                    }
+                }
             }
-        ];
+        }
+        createNetworkParticles();
+
+        // ============================================================
+        // TYPING ANIMATION
+        // ============================================================
+        function startTyping() {
+            const text = "Welcome to TFS Retail, Interns";
+            const container = document.getElementById('typingText');
+            let index = 0;
+            let isDeleting = false;
+
+            function typeLoop() {
+                if (!isDeleting && index <= text.length) {
+                    const displayText = text.substring(0, index);
+                    const nextChar = text.substring(index, index + 1);
+                    let html = displayText + '<span class="cursor"></span>';
+
+                    // Color the "TFS Retail" part
+                    const formattedText = displayText
+                        .replace('TFS Retail', '<span class="highlight-blue">TFS Retail</span>')
+                        .replace('Interns', '<span style="color:#fbbf24;">Interns</span>');
+
+                    container.innerHTML = formattedText + '<span class="cursor"></span>';
+                    index++;
+                    if (index > text.length) {
+                        setTimeout(() => {
+                            isDeleting = true;
+                            setTimeout(typeLoop, 2000);
+                        }, 500);
+                        return;
+                    }
+                    setTimeout(typeLoop, 60);
+                } else if (isDeleting && index >= 0) {
+                    const displayText = text.substring(0, index);
+                    const formattedText = displayText
+                        .replace('TFS Retail', '<span class="highlight-blue">TFS Retail</span>')
+                        .replace('Interns', '<span style="color:#fbbf24;">Interns</span>');
+                    container.innerHTML = formattedText + '<span class="cursor"></span>';
+                    index--;
+                    if (index < 0) {
+                        isDeleting = false;
+                        index = 0;
+                        setTimeout(typeLoop, 500);
+                        return;
+                    }
+                    setTimeout(typeLoop, 30);
+                }
+            }
+            setTimeout(typeLoop, 500);
+        }
+        setTimeout(startTyping, 500);
+
+        // ============================================================
+        // 25 QUESTIONS
+        // ============================================================
+        const questions = [{
+            id: 1,
+            type: "mcq",
+            text: "What tool did you use to crimp the RJ45 cable?",
+            options: ["Crimping Tool", "Screwdriver", "Multimeter", "Wire Stripper"],
+            correct: "Crimping Tool"
+        }, {
+            id: 2,
+            type: "mcq",
+            text: "What type of cable did you run to connect the access point?",
+            options: ["Coaxial", "Ethernet (Cat5e/Cat6)", "Fiber Optic", "USB"],
+            correct: "Ethernet (Cat5e/Cat6)"
+        }, {
+            id: 3,
+            type: "mcq",
+            text: "What is the first step when installing a new HP LaserJet toner?",
+            options: ["Shake the toner", "Remove the old cartridge", "Turn off the printer", "Open the front cover"],
+            correct: "Turn off the printer"
+        }, {
+            id: 4,
+            type: "mcq",
+            text: "Which device did you connect the access point to for internet access?",
+            options: ["Switch", "Router", "Modem", "Hub"],
+            correct: "Router"
+        }, {
+            id: 5,
+            type: "mcq",
+            text: "The HoneyWell scanner at the tills uses which type of connection typically?",
+            options: ["USB", "Bluetooth", "Serial", "Parallel"],
+            correct: "USB"
+        }, {
+            id: 6,
+            type: "mcq",
+            text: "Which network protocol automatically assigns IP addresses to devices?",
+            options: ["DNS", "DHCP", "HTTP", "FTP"],
+            correct: "DHCP"
+        }, {
+            id: 7,
+            type: "fill",
+            text: "The device that connects multiple devices on a local network and forwards data to the internet is called a ________.",
+            correct: "router"
+        }, {
+            id: 8,
+            type: "mcq",
+            text: "What does DNS stand for?",
+            options: ["Domain Name System", "Data Network Service", "Digital Name Server", "Dynamic Network System"],
+            correct: "Domain Name System"
+        }, {
+            id: 9,
+            type: "fill",
+            text: "The standard port number for HTTP is ________.",
+            correct: "80"
+        }, {
+            id: 10,
+            type: "mcq",
+            text: "Which IP address is used for localhost?",
+            options: ["127.0.0.1", "192.168.1.1", "8.8.8.8", "0.0.0.0"],
+            correct: "127.0.0.1"
+        }, {
+            id: 11,
+            type: "mcq",
+            text: "A server that is owned, operated, and used exclusively by a single organisation is called a ________ server.",
+            options: ["Public", "Private", "Hybrid", "Shared"],
+            correct: "Private"
+        }, {
+            id: 12,
+            type: "mcq",
+            text: "A server that is available to anyone over the internet and shared by multiple users is called a ________ server.",
+            options: ["Private", "Hybrid", "Public", "Dedicated"],
+            correct: "Public"
+        }, {
+            id: 13,
+            type: "mcq",
+            text: "A ________ server combines both private and public cloud resources, allowing data to move between them.",
+            options: ["Dedicated", "Hybrid", "Shared", "Virtual"],
+            correct: "Hybrid"
+        }, {
+            id: 14,
+            type: "fill",
+            text: "A ________ server is hosted on-premises and not accessible to the public internet.",
+            correct: "private"
+        }, {
+            id: 15,
+            type: "mcq",
+            text: "Which type of server is typically used for hosting a company's internal HR system?",
+            options: ["Public", "Hybrid", "Private", "Open"],
+            correct: "Private"
+        }, {
+            id: 16,
+            type: "mcq",
+            text: "Which type of server is most suitable for a web application with variable traffic that can scale up during peak times?",
+            options: ["Private", "Hybrid", "Public", "Local"],
+            correct: "Hybrid"
+        }, {
+            id: 17,
+            type: "fill",
+            text: "A server that is hosted by a third-party provider and shared by many customers is a ________ server.",
+            correct: "public"
+        }, {
+            id: 18,
+            type: "mcq",
+            text: "What is the main advantage of a hybrid server approach?",
+            options: [
+                "It is always cheaper",
+                "It offers flexibility to keep sensitive data private while scaling publicly",
+                "It never requires maintenance",
+                "It works without an internet connection"
+            ],
+            correct: "It offers flexibility to keep sensitive data private while scaling publicly"
+        }, {
+            id: 19,
+            type: "mcq",
+            text: "What is the first step after downloading Microsoft Office?",
+            options: ["Run the installer", "Open a document", "Check for updates", "Activate the license"],
+            correct: "Run the installer"
+        }, {
+            id: 20,
+            type: "fill",
+            text: "The software used to create spreadsheets in Microsoft Office is called ________.",
+            correct: "excel"
+        }, {
+            id: 21,
+            type: "mcq",
+            text: "Which Microsoft Office application is used for presentations?",
+            options: ["Word", "Excel", "PowerPoint", "Outlook"],
+            correct: "PowerPoint"
+        }, {
+            id: 22,
+            type: "fill",
+            text: "A product key is required to ________ Microsoft Office after installation.",
+            correct: "activate"
+        }, {
+            id: 23,
+            type: "mcq",
+            text: "What does 'IT' stand for?",
+            options: ["Internet Technology", "Information Technology", "Integrated Tools", "Intelligent Terminals"],
+            correct: "Information Technology"
+        }, {
+            id: 24,
+            type: "fill",
+            text: "A ________ is a set of instructions that tells a computer what to do.",
+            correct: "program"
+        }, {
+            id: 25,
+            type: "mcq",
+            text: "Which of the following is NOT a type of server deployment?",
+            options: ["Private", "Public", "Hybrid", "Vertical"],
+            correct: "Vertical"
+        }];
 
         // ============================================================
         // STATE
@@ -1519,7 +1917,6 @@
                             const submitBtn = document.querySelector('.fill-submit-btn');
                             if (input) input.disabled = true;
                             if (submitBtn) submitBtn.disabled = true;
-                            // Auto-submit empty = wrong
                         }
                         answered = true;
                         nextBtn.disabled = false;
@@ -1630,7 +2027,6 @@
                     if (e.key === 'Enter') handleFillSubmit();
                 });
 
-                // Focus the input automatically
                 setTimeout(() => input.focus(), 100);
             }
 
@@ -1709,7 +2105,7 @@
                     You got <strong>${score}/${total}</strong> correct in <strong>${formatTime(totalTimeTaken)}</strong>!
                     <br /><strong style="color:#fbbf24;">${selectedStudent || 'You'}</strong>, 
                     you've proven your IT knowledge and earned access to the celebration page.
-                    <br /><br />👏 Your tutor, Lefu, is incredibly proud of you!
+                    <br /><br />👏 Your tutor, Lefu, is incredibly proud of you at <strong style="color:#3b82f6;">TFS Retail</strong>!
                 `;
 
                 if (selectedStudent) {
